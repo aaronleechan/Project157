@@ -72,7 +72,16 @@
 
 		<div id="results">
 		<hr>
-			<?php
+			<table width= "600" border= "1" cellpadding = "1" cellspacing= "1">
+			  <tr>
+				<th>movieID</th>
+				<th>name</th>
+				<th>description</th>
+				<th>genre</th>
+				<th>year</th>
+				<th>location</th>
+			  </tr>
+ 			  <?php
 				$user = 'root';
 				$pass = '';
 				$db   = 'CS157A_Database';
@@ -94,14 +103,25 @@
 
 				if($result = mysqli_query($link,$query)){
 				while($row = mysqli_fetch_array($result)){
-				echo '<pre>',print_r($row,true),'</pre>';
+					echo "<tr>";
+
+					echo "<td>".$row['movieID']."</td>";
+					echo "<td>".$row['name']."</td>";
+					echo "<td>".$row['description']."</td>";
+					echo "<td>".$row['genre']."</td>";
+					echo "<td>".$row['year']."</td>";
+					echo "<td>".$row['location']."</td>";
+					
+					echo "</tr>";
+				// echo '<pre>',print_r($row,true),'</pre>';
 				}
 
 				}else{
 					echo "Query failed";
 				}
 
-			?>
+			  ?>
+			</table>
 		</div>
 	</body>
 </html>
