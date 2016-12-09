@@ -70,6 +70,12 @@
 			</table>
 		</FORM>
 
+		<hr>
+		<h3> Setting </h3>
+		<FORM>
+			<button><a href= "newform.html"> Add new movie </a></button>
+		</FORM>
+
 		<div id="results">
 		<hr>
 			<table width= "600" border= "1" cellpadding = "1" cellspacing= "1">
