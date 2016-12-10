@@ -1,2 +1,6 @@
 #OS specific
 .DS_Store
+
+#IDE specific
+xsx
+.idea
