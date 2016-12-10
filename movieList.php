@@ -8,34 +8,53 @@
     <center> Movie List </center>
 	<button> <a href = "http://localhost/Project157/movieDatabase.php"> Go Back </a></button>
 	<br>
-	<B>Genre:</B>
 	<?php
 	$base = "SELECT m.name as 'Movie Title', m.description, m.genre, m.year, m.location, h.languageName, o.studioName FROM movies m 
 			JOIN has h ON m.movieID = h.movieID
 			JOIN owns o ON m.movieID = o.movieID";
-	$query = $base . ";";
-	$genremessage= "Genre: All";
+
 	if(isset($_POST['All'])){
     	$genremessage= "Genre: All";
-		$query = $base . ";";
+		$genre = "";
     }
 	if(isset($_POST['Horror'])){
     	$genremessage= "Genre: Horror";
-		$query = $base . " WHERE genre = 'Horror';";
+		$genre = " WHERE genre = 'Horror'";
     }
 	if(isset($_POST['Action'])){
     	$genremessage= "Genre: Action";
-		$query = $base . " WHERE genre = 'Action';";
+		$genre = " WHERE genre = 'Action'";
     }
 	if(isset($_POST['Comedy'])){
     	$genremessage= "Genre: Comedy";
-		$query = $base . " WHERE genre = 'Comedy';";
+		$genre = " WHERE genre = 'Comedy'";
     }
     if(isset($_POST['Romance'])){
     	$genremessage= "Genre: Romance";
-		$query = $base . " WHERE genre = 'Romance';";
+		$genre = " WHERE genre = 'Romance'";
     }
+
+	if(isset($_POST['title'])){
+    	$orderbymessage= "Order By: Title";
+		$orderby = "  ORDER BY 'Movie Title'";
+    }
+	if(isset($_POST['year'])){
+    	$orderbymessage= "Order By: Year";
+		$orderby = "  ORDER BY year";
+    }
+
+	if(!isset($genre))
+		$genre = "";
+	if(!isset($orderby))
+		$orderby = "";
+	if(!isset($genremessage))
+		$genremessage= "Genre: ";
+	if(!isset($orderby))
+		$orderbymessage= "Order By: n/a";
+	$query = $base . $genre . $orderby . ";";
 	?>
+
+	<B>Genre:</B>
 	<form  method="post">
     <!--<input type="text" name="txt" value="<?php if(isset($genremessage)){ echo $genremessage;}?>" >-->
 	<input type="submit" name="All" value="All">
@@ -44,7 +63,20 @@
 	<input type="submit" name="Comedy" value="Comedy">
     <input type="submit" name="Romance" value="Romance">
     </form>
-	<p><?php if(isset($genremessage)){ echo $genremessage;}?></p>
+	<B>Order By:</B>
+	<form  method="post">
+	<input type="submit" name="title" value="title">
+    <input type="submit" name="year" value="year">
+    </form>
+	<p><?php 
+	if(isset($genremessage)) { 
+		echo $genremessage . " "; 
+	}
+	if(isset($orderbymessage)) { 
+		echo $orderbymessage;
+	}
+	?></p>
+
 	<div id="results">
 			<hr>
  			<?php
