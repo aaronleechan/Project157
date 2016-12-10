@@ -10,27 +10,30 @@
 	<br>
 	<B>Genre:</B>
 	<?php
-	$query = "SELECT * from movies";
+	$base = "SELECT m.name as 'Movie Title', m.description, m.genre, m.year, m.location, h.languageName, o.studioName FROM movies m 
+			JOIN has h ON m.movieID = h.movieID
+			JOIN owns o ON m.movieID = o.movieID";
+	$query = $base . ";";
 	$genremessage= "Genre: All";
 	if(isset($_POST['All'])){
     	$genremessage= "Genre: All";
-		$query = "SELECT * from movies;";
+		$query = $base . ";";
     }
 	if(isset($_POST['Horror'])){
     	$genremessage= "Genre: Horror";
-		$query = "SELECT * from movies WHERE genre = 'Horror';";
+		$query = $base . " WHERE genre = 'Horror';";
     }
 	if(isset($_POST['Action'])){
     	$genremessage= "Genre: Action";
-		$query = "SELECT * from movies WHERE genre = 'Action';";
+		$query = $base . " WHERE genre = 'Action';";
     }
 	if(isset($_POST['Comedy'])){
     	$genremessage= "Genre: Comedy";
-		$query = "SELECT * from movies WHERE genre = 'Comedy';";
+		$query = $base . " WHERE genre = 'Comedy';";
     }
     if(isset($_POST['Romance'])){
     	$genremessage= "Genre: Romance";
-		$query = "SELECT * from movies WHERE genre = 'Romance';";
+		$query = $base . " WHERE genre = 'Romance';";
     }
 	?>
 	<form  method="post">
