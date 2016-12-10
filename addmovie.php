@@ -1,79 +1,88 @@
 <?php
 
 if (isset($_POST['submit'])) {
-	$movieid 						=	mysql_escape_string($_POST['movieid']);
-	$movieName						=	mysql_escape_string($_POST['movieName']);
-	$moviegenre						=	mysql_escape_string($_POST['moviegenre']);
-	$movieyear 						= 	mysql_escape_string($_POST['movieyear']);
-	$moviedescription				= 	mysql_escape_string($_POST['moviedescription']);
-	$movielocation					= 	mysql_escape_string($_POST['movielocation']);
+	$user = 'root';
+	$pass = '';
+	$db   = 'CS157A_Database';
+	$linkdb = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+
+	//$movieid 						=	mysqli_escape_string($linkdb, $_POST['movieid']);
+	$query = 'select max(movieID) from movies;';
+	$result = mysqli_query($linkdb, $query);
+	$row = mysqli_fetch_row($result);
+	$movieid = mysqli_escape_string($linkdb, $row[0]+1);
+	$movieName						=	mysqli_escape_string($linkdb, $_POST['movieName']);
+	$moviegenre						=	mysqli_escape_string($linkdb, $_POST['moviegenre']);
+	$movieyear 						= 	mysqli_escape_string($linkdb, $_POST['movieyear']);
+	$moviedescription				= 	mysqli_escape_string($linkdb, $_POST['moviedescription']);
+	$movielocation					= 	mysqli_escape_string($linkdb, $_POST['movielocation']);
 
 
-	$oneactorid						=	mysql_escape_string($_POST['oneactorid']);
-	$oneactor						=	mysql_escape_string($_POST['oneactor']);
-	$oneactorgender					= 	mysql_escape_string($_POST['oneactorgender']);
-	$oneactorrole					= 	mysql_escape_string($_POST['oneactorrole']);
+	$oneactorid						=	mysqli_escape_string($linkdb, $_POST['oneactorid']);
+	$oneactor						=	mysqli_escape_string($linkdb, $_POST['oneactor']);
+	$oneactorgender					= 	mysqli_escape_string($linkdb, $_POST['oneactorgender']);
+	$oneactorrole					= 	mysqli_escape_string($linkdb, $_POST['oneactorrole']);
 
-	$twoactorid						=	mysql_escape_string($_POST['twoactorid']);
-	$twoactor						=	mysql_escape_string($_POST['twoactor']);
-	$twoactorgender					= 	mysql_escape_string($_POST['twoactorgender']);
-	$twoactorrole					= 	mysql_escape_string($_POST['twoactorrole']);
+	$twoactorid						=	mysqli_escape_string($linkdb, $_POST['twoactorid']);
+	$twoactor						=	mysqli_escape_string($linkdb, $_POST['twoactor']);
+	$twoactorgender					= 	mysqli_escape_string($linkdb, $_POST['twoactorgender']);
+	$twoactorrole					= 	mysqli_escape_string($linkdb, $_POST['twoactorrole']);
 
-	$threeactorid					=	mysql_escape_string($_POST['threeactorid']);
-	$threeactor						=	mysql_escape_string($_POST['threeactor']);
-	$threeactorgender				= 	mysql_escape_string($_POST['threeactorgender']);
-	$threeactorrole					= 	mysql_escape_string($_POST['threeactorrole']);
+	$threeactorid					=	mysqli_escape_string($linkdb, $_POST['threeactorid']);
+	$threeactor						=	mysqli_escape_string($linkdb, $_POST['threeactor']);
+	$threeactorgender				= 	mysqli_escape_string($linkdb, $_POST['threeactorgender']);
+	$threeactorrole					= 	mysqli_escape_string($linkdb, $_POST['threeactorrole']);
 
-	$fouractorid					=	mysql_escape_string($_POST['fouractorid']);
-	$fouractor						=	mysql_escape_string($_POST['fouractor']);
-	$fouractorgender				= 	mysql_escape_string($_POST['fouractorgender']);
-	$fouractorrole					= 	mysql_escape_string($_POST['fouractorrole']);
+	$fouractorid					=	mysqli_escape_string($linkdb, $_POST['fouractorid']);
+	$fouractor						=	mysqli_escape_string($linkdb, $_POST['fouractor']);
+	$fouractorgender				= 	mysqli_escape_string($linkdb, $_POST['fouractorgender']);
+	$fouractorrole					= 	mysqli_escape_string($linkdb, $_POST['fouractorrole']);
 
-	$fiveactorid					=	mysql_escape_string($_POST['fiveactorid']);
-	$fiveactor						=	mysql_escape_string($_POST['fiveactor']);
-	$fiveactorgender				= 	mysql_escape_string($_POST['fiveactorgender']);
-	$fiveactorrole					= 	mysql_escape_string($_POST['fiveactorrole']);
+	$fiveactorid					=	mysqli_escape_string($linkdb, $_POST['fiveactorid']);
+	$fiveactor						=	mysqli_escape_string($linkdb, $_POST['fiveactor']);
+	$fiveactorgender				= 	mysqli_escape_string($linkdb, $_POST['fiveactorgender']);
+	$fiveactorrole					= 	mysqli_escape_string($linkdb, $_POST['fiveactorrole']);
 
-	$sixactorid						=	mysql_escape_string($_POST['sixactorid']);
-	$sixactor						=	mysql_escape_string($_POST['sixactor']);
-	$sixactorgender					= 	mysql_escape_string($_POST['sixactorgender']);
-	$sixactorrole					= 	mysql_escape_string($_POST['sixactorrole']);
+	$sixactorid						=	mysqli_escape_string($linkdb, $_POST['sixactorid']);
+	$sixactor						=	mysqli_escape_string($linkdb, $_POST['sixactor']);
+	$sixactorgender					= 	mysqli_escape_string($linkdb, $_POST['sixactorgender']);
+	$sixactorrole					= 	mysqli_escape_string($linkdb, $_POST['sixactorrole']);
 
-	$sevenactorid					=	mysql_escape_string($_POST['sevenactorid']);
-	$sevenactor						=	mysql_escape_string($_POST['sevenactor']);
-	$sevenactorgender				= 	mysql_escape_string($_POST['sevenactorgender']);
-	$sevenactorrole					= 	mysql_escape_string($_POST['sevenactorrole']);
+	$sevenactorid					=	mysqli_escape_string($linkdb, $_POST['sevenactorid']);
+	$sevenactor						=	mysqli_escape_string($linkdb, $_POST['sevenactor']);
+	$sevenactorgender				= 	mysqli_escape_string($linkdb, $_POST['sevenactorgender']);
+	$sevenactorrole					= 	mysqli_escape_string($linkdb, $_POST['sevenactorrole']);
 
-	$eightactorid					=	mysql_escape_string($_POST['eightactorid']);
-	$eightactor						=	mysql_escape_string($_POST['eightactor']);
-	$eightactorgender				= 	mysql_escape_string($_POST['eightactorgender']);
-	$eightactorrole					= 	mysql_escape_string($_POST['eightactorrole']);
+	$eightactorid					=	mysqli_escape_string($linkdb, $_POST['eightactorid']);
+	$eightactor						=	mysqli_escape_string($linkdb, $_POST['eightactor']);
+	$eightactorgender				= 	mysqli_escape_string($linkdb, $_POST['eightactorgender']);
+	$eightactorrole					= 	mysqli_escape_string($linkdb, $_POST['eightactorrole']);
 
-	$nineactorid					=	mysql_escape_string($_POST['nineactorid']);
-	$nineactor						=	mysql_escape_string($_POST['nineactor']);
-	$nineactorgender				= 	mysql_escape_string($_POST['nineactorgender']);
-	$nineactorrole					= 	mysql_escape_string($_POST['nineactorrole']);
+	$nineactorid					=	mysqli_escape_string($linkdb, $_POST['nineactorid']);
+	$nineactor						=	mysqli_escape_string($linkdb, $_POST['nineactor']);
+	$nineactorgender				= 	mysqli_escape_string($linkdb, $_POST['nineactorgender']);
+	$nineactorrole					= 	mysqli_escape_string($linkdb, $_POST['nineactorrole']);
 
-	$tenactorid						=	mysql_escape_string($_POST['tenactorid']);
-	$tenactor						=	mysql_escape_string($_POST['tenactor']);
-	$tenactorgender					= 	mysql_escape_string($_POST['tenactorgender']);
-	$tenactorrole					= 	mysql_escape_string($_POST['tenactorrole']);
+	$tenactorid						=	mysqli_escape_string($linkdb, $_POST['tenactorid']);
+	$tenactor						=	mysqli_escape_string($linkdb, $_POST['tenactor']);
+	$tenactorgender					= 	mysqli_escape_string($linkdb, $_POST['tenactorgender']);
+	$tenactorrole					= 	mysqli_escape_string($linkdb, $_POST['tenactorrole']);
  
- 	$onedirectorid					=	mysql_escape_string($_POST['onedirectorid']);
-	$onedirector 					=	mysql_escape_string($_POST['onedirector']);
-	$onedirectorgender				=	mysql_escape_string($_POST['onedirectorgender']);
+ 	$onedirectorid					=	mysqli_escape_string($linkdb, $_POST['onedirectorid']);
+	$onedirector 					=	mysqli_escape_string($linkdb, $_POST['onedirector']);
+	$onedirectorgender				=	mysqli_escape_string($linkdb, $_POST['onedirectorgender']);
 
-	$twodirectorid					=	mysql_escape_string($_POST['twodirectorid']);
-	$twodirector 					=	mysql_escape_string($_POST['twodirector']);
-	$twodirectorgender				=	mysql_escape_string($_POST['twodirectorgender']);
+	$twodirectorid					=	mysqli_escape_string($linkdb, $_POST['twodirectorid']);
+	$twodirector 					=	mysqli_escape_string($linkdb, $_POST['twodirector']);
+	$twodirectorgender				=	mysqli_escape_string($linkdb, $_POST['twodirectorgender']);
 
-	if(!$_POST['movieid']){
+	/*if(!$_POST['movieid']){
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the movie id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 	exit();
-	}
+	}*/
 
 	if(!$_POST['movieName']){
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
@@ -85,7 +94,7 @@ if (isset($_POST['submit'])) {
 
 	if(!$_POST['movieyear']){
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the movie year')
 		window.location.href='newform.html'
 		</SCRIPT>");
 	exit();
@@ -95,7 +104,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['oneactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -106,7 +115,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['twoactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -117,7 +126,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['threeactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -128,7 +137,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['fouractor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -139,7 +148,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['fiveactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -150,7 +159,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['sixactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -161,7 +170,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['sevenactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -172,7 +181,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['eightactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -183,7 +192,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['nineactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -194,7 +203,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['tenactor'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the actor id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -205,7 +214,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['onedirector'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the director id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();
@@ -216,7 +225,7 @@ if (isset($_POST['submit'])) {
 		if(!$_POST['twodirector'])
 		{
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie name')
+		window.alert('You need to add the director id')
 		window.location.href='newform.html'
 		</SCRIPT>");
 		exit();

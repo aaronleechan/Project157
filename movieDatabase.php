@@ -74,7 +74,7 @@
 		<hr>
 		<h3> Setting </h3>
 		<FORM>
-			<button><a href= "newform.html"> Add new movie </a></button>
+			<button><a href= "http://localhost/Project157/newform.html"> Add new movie </a></button>
 		</FORM>
 
 		<div id="results">
@@ -97,7 +97,6 @@
 				else
 				{
 					$query = '';
-					print "We have no query";
 				}
 
 				function sql_to_html_table($result) {
@@ -129,10 +128,14 @@
 					return( $htmltable ) ; 
 				}
 				
-				if($result = mysqli_query($link,$query)){
-					echo sql_to_html_table($result);
+				if ($query != '') {
+					if($result = mysqli_query($link,$query)){
+						echo sql_to_html_table($result);
+					} else {
+						echo "Query failed";
+					}
 				} else {
-					echo "Query failed";
+					echo "No Query";
 				}
 			?>
 		</div>
