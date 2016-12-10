@@ -47,10 +47,6 @@
 			JOIN audience a ON r.criticID = a.criticID 
 			JOIN critics c ON c.criticID = a.criticID 
 			WHERE m.name = '2001: A Space Odyssey';#results" >Query 5</a>&nbsp;Find all audience reviews and ratings for a specific movie</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT * from movies WHERE genre = 'Horror';#results" >Horror</a>&nbsp;Find all horror movies</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT * from movies WHERE genre = 'Action';#results" >Action</a>&nbsp;Find all action movies</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT * from movies WHERE genre = 'Comedy';#results" >Comedy</a>&nbsp;Find all comedy movies</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT * from movies WHERE genre = 'Romance';#results" >Romance</a>&nbsp;Find all romance movies</li>
 		</ol>
 		<hr>
 		<B>Ad-hoc Query:</B>
@@ -76,9 +72,10 @@
 		</FORM>
 
 		<hr>
-		<h3> Setting </h3>
+		<h3> More </h3>
 		<FORM>
 			<button><a href= "http://localhost/Project157/newform.html"> Add new movie </a></button>
+			<button><a href= "http://localhost/Project157/movieList.php"> Movie List </a></button>
 		</FORM>
 
 		<div id="results">
