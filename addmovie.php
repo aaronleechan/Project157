@@ -6,7 +6,6 @@ if (isset($_POST['submit'])) {
 	$db   = 'CS157A_Database';
 	$linkdb = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 
-	//$movieid 						=	mysqli_escape_string($linkdb, $_POST['movieid']);
 	$query = 'select max(movieID) from movies;';
 	$result = mysqli_query($linkdb, $query);
 	$row = mysqli_fetch_row($result);
@@ -18,71 +17,69 @@ if (isset($_POST['submit'])) {
 	$movielocation					= 	mysqli_escape_string($linkdb, $_POST['movielocation']);
 
 
-	$oneactorid						=	mysqli_escape_string($linkdb, $_POST['oneactorid']);
+	$query = 'select max(actorID) from actors;';
+	$result = mysqli_query($linkdb, $query);
+	$row = mysqli_fetch_row($result);
+	$oneactorid = mysqli_escape_string($linkdb, $row[0]+1);
 	$oneactor						=	mysqli_escape_string($linkdb, $_POST['oneactor']);
 	$oneactorgender					= 	mysqli_escape_string($linkdb, $_POST['oneactorgender']);
 	$oneactorrole					= 	mysqli_escape_string($linkdb, $_POST['oneactorrole']);
 
-	$twoactorid						=	mysqli_escape_string($linkdb, $_POST['twoactorid']);
+	$twoactorid = mysqli_escape_string($linkdb, $row[0]+2);
 	$twoactor						=	mysqli_escape_string($linkdb, $_POST['twoactor']);
 	$twoactorgender					= 	mysqli_escape_string($linkdb, $_POST['twoactorgender']);
 	$twoactorrole					= 	mysqli_escape_string($linkdb, $_POST['twoactorrole']);
 
-	$threeactorid					=	mysqli_escape_string($linkdb, $_POST['threeactorid']);
+	$threeactorid = mysqli_escape_string($linkdb, $row[0]+3);
 	$threeactor						=	mysqli_escape_string($linkdb, $_POST['threeactor']);
 	$threeactorgender				= 	mysqli_escape_string($linkdb, $_POST['threeactorgender']);
 	$threeactorrole					= 	mysqli_escape_string($linkdb, $_POST['threeactorrole']);
 
-	$fouractorid					=	mysqli_escape_string($linkdb, $_POST['fouractorid']);
+	$fouractorid = mysqli_escape_string($linkdb, $row[0]+4);
 	$fouractor						=	mysqli_escape_string($linkdb, $_POST['fouractor']);
 	$fouractorgender				= 	mysqli_escape_string($linkdb, $_POST['fouractorgender']);
 	$fouractorrole					= 	mysqli_escape_string($linkdb, $_POST['fouractorrole']);
 
-	$fiveactorid					=	mysqli_escape_string($linkdb, $_POST['fiveactorid']);
+	$fiveactorid = mysqli_escape_string($linkdb, $row[0]+5);
 	$fiveactor						=	mysqli_escape_string($linkdb, $_POST['fiveactor']);
 	$fiveactorgender				= 	mysqli_escape_string($linkdb, $_POST['fiveactorgender']);
 	$fiveactorrole					= 	mysqli_escape_string($linkdb, $_POST['fiveactorrole']);
 
-	$sixactorid						=	mysqli_escape_string($linkdb, $_POST['sixactorid']);
+	$sixactorid	 = mysqli_escape_string($linkdb, $row[0]+6);
 	$sixactor						=	mysqli_escape_string($linkdb, $_POST['sixactor']);
 	$sixactorgender					= 	mysqli_escape_string($linkdb, $_POST['sixactorgender']);
 	$sixactorrole					= 	mysqli_escape_string($linkdb, $_POST['sixactorrole']);
 
-	$sevenactorid					=	mysqli_escape_string($linkdb, $_POST['sevenactorid']);
+	$sevenactorid = mysqli_escape_string($linkdb, $row[0]+7);
 	$sevenactor						=	mysqli_escape_string($linkdb, $_POST['sevenactor']);
 	$sevenactorgender				= 	mysqli_escape_string($linkdb, $_POST['sevenactorgender']);
 	$sevenactorrole					= 	mysqli_escape_string($linkdb, $_POST['sevenactorrole']);
 
-	$eightactorid					=	mysqli_escape_string($linkdb, $_POST['eightactorid']);
+	$eightactorid = mysqli_escape_string($linkdb, $row[0]+8);
 	$eightactor						=	mysqli_escape_string($linkdb, $_POST['eightactor']);
 	$eightactorgender				= 	mysqli_escape_string($linkdb, $_POST['eightactorgender']);
 	$eightactorrole					= 	mysqli_escape_string($linkdb, $_POST['eightactorrole']);
 
-	$nineactorid					=	mysqli_escape_string($linkdb, $_POST['nineactorid']);
+	$nineactorid = mysqli_escape_string($linkdb, $row[0]+9);
 	$nineactor						=	mysqli_escape_string($linkdb, $_POST['nineactor']);
 	$nineactorgender				= 	mysqli_escape_string($linkdb, $_POST['nineactorgender']);
 	$nineactorrole					= 	mysqli_escape_string($linkdb, $_POST['nineactorrole']);
 
-	$tenactorid						=	mysqli_escape_string($linkdb, $_POST['tenactorid']);
+	$tenactorid = mysqli_escape_string($linkdb, $row[0]+10);
 	$tenactor						=	mysqli_escape_string($linkdb, $_POST['tenactor']);
 	$tenactorgender					= 	mysqli_escape_string($linkdb, $_POST['tenactorgender']);
 	$tenactorrole					= 	mysqli_escape_string($linkdb, $_POST['tenactorrole']);
  
- 	$onedirectorid					=	mysqli_escape_string($linkdb, $_POST['onedirectorid']);
+	$query = 'select max(directorID) from directors;';
+	$result = mysqli_query($linkdb, $query);
+	$row = mysqli_fetch_row($result);
+	$onedirectorid = mysqli_escape_string($linkdb, $row[0]+1);
 	$onedirector 					=	mysqli_escape_string($linkdb, $_POST['onedirector']);
 	$onedirectorgender				=	mysqli_escape_string($linkdb, $_POST['onedirectorgender']);
 
-	$twodirectorid					=	mysqli_escape_string($linkdb, $_POST['twodirectorid']);
+	$twodirectorid = mysqli_escape_string($linkdb, $row[0]+2);
 	$twodirector 					=	mysqli_escape_string($linkdb, $_POST['twodirector']);
 	$twodirectorgender				=	mysqli_escape_string($linkdb, $_POST['twodirectorgender']);
-
-	/*if(!$_POST['movieid']){
-		echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the movie id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-	exit();
-	}*/
 
 	if(!$_POST['movieName']){
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
@@ -100,141 +97,26 @@ if (isset($_POST['submit'])) {
 	exit();
 	}
 
-	if($_POST['oneactorid']){
-		if(!$_POST['oneactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
+	if(!$_POST['moviegenre']){
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+		window.alert('You need to add the movie genre')
 		window.location.href='newform.html'
 		</SCRIPT>");
-		exit();
-		}
+	exit();
 	}
 
-	if($_POST['twoactorid']){
-		if(!$_POST['twoactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
+	if(!$_POST['movielocation']){
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+		window.alert('You need to add the movie location')
 		window.location.href='newform.html'
 		</SCRIPT>");
-		exit();
-		}
+	exit();
 	}
 
-	if($_POST['threeactorid']){
-		if(!$_POST['threeactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['fouractorid']){
-		if(!$_POST['fouractor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['fiveactorid']){
-		if(!$_POST['fiveactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['sixactorid']){
-		if(!$_POST['sixactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['sevenactorid']){
-		if(!$_POST['sevenactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['eightactorid']){
-		if(!$_POST['eightactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['nineactorid']){
-		if(!$_POST['nineactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['tenactorid']){
-		if(!$_POST['tenactor'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the actor id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['onedirectorid']){
-		if(!$_POST['onedirector'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the director id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
-
-	if($_POST['twodirectorid']){
-		if(!$_POST['twodirector'])
-		{
-			echo ("<SCRIPT LANGUAGE='JavaScript'>
-		window.alert('You need to add the director id')
-		window.location.href='newform.html'
-		</SCRIPT>");
-		exit();
-		}
-	}
 }
 ?>
 
-<!-- summit into movie database -->
+<!-- submit into movie database -->
 <?php
 $user = 'root';
 $pass = '';
@@ -269,14 +151,14 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 	}
 
 
-	if($_POST['oneactorid']){
+	if($_POST['oneactor']){
 		$queryactorone = "INSERT INTO 
 						Actors(actorID,name,gender) 
 						VALUES ('$oneactorid', '$oneactor', '$oneactorgender')";
 		mysqli_query($linkactorone,$queryactorone);
 	}
 
-	if($_POST['twoactorid']){
+	if($_POST['twoactor']){
 		$linkactortwo = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactortwo = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -284,7 +166,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactortwo,$queryactortwo);
 	}
 
-	if($_POST['threeactorid']){
+	if($_POST['threeactor']){
 		$linkactorthree = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactorthree = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -292,7 +174,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactorthree,$queryactorthree);
 	}
 
-	if($_POST['fouractorid']){
+	if($_POST['fouractor']){
 		$linkactorfour = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactorfour = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -300,7 +182,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactorfour,$queryactorfour);
 	}
 
-	if($_POST['fiveactorid']){
+	if($_POST['fiveactor']){
 		$linkactorfive = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactorfive = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -308,7 +190,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactorfive,$queryactorfive);
 	}
 
-	if($_POST['sixactorid']){
+	if($_POST['sixactor']){
 		$linkactorsix = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactorsix = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -316,7 +198,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactorsix,$queryactorsix);
 	}
 
-	if($_POST['sevenactorid']){
+	if($_POST['sevenactor']){
 		$linkactorseven = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactorseven = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -324,7 +206,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactorseven,$queryactorseven);
 	}
 
-	if($_POST['eightactorid']){
+	if($_POST['eightactor']){
 		$linkactoreight = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactoreight = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -332,7 +214,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactoreight,$queryactoreight);
 	}
 
-	if($_POST['nineactorid']){
+	if($_POST['nineactor']){
 		$linkactornine = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactornine = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -340,7 +222,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 		mysqli_query($linkactornine,$queryactornine);
 	}
 
-	if($_POST['tenactorid']){
+	if($_POST['tenactor']){
 		$linkactorten = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryactorten = "INSERT INTO 
 						Actors(actorID,name,gender) 
@@ -362,14 +244,14 @@ $linkdirectorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to
 		die("Could not connect to database");
 	}
 
-	if($_POST['onedirectorid']){
+	if($_POST['onedirector']){
 		$querydirectorone = "INSERT INTO 
 						Directors(directorID,name,gender) 
 						VALUES ('$onedirectorid', '$onedirector', '$onedirectorgender')";
 		mysqli_query($linkdirectorone,$querydirectorone);
 	}
 
-	if($_POST['twodirectorid']){
+	if($_POST['twodirector']){
 		$linkdirectortwo 	= mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$querydirectortwo 	= "INSERT INTO 
 							Directors(directorID,name,gender)
@@ -391,14 +273,14 @@ $linkdirectone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to c
 		die("Could not connect to database");
 	}
 
-	if($_POST['onedirectorid']){
+	if($_POST['onedirector']){
 		$querydirectone = "INSERT INTO 
 						Directs(directorID,movieID) 
 						VALUES ('$onedirectorid', '$movieid')";
 		mysqli_query($linkdirectone,$querydirectone);
 	}
 
-	if($_POST['twodirectorid']){
+	if($_POST['twodirector']){
 		$linkdirecttwo 	= mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$querydirecttwo 	= "INSERT INTO 
 							Directs(directorID,movieID) 
@@ -421,14 +303,14 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 	}
 
 
-	if($_POST['oneactorid']){
+	if($_POST['oneactor']){
 		$queryperformone = "INSERT INTO 
 						performs(actorID,movieid,role) 
 						VALUES ('$oneactorid', '$movieid', '$oneactorrole')";
 		mysqli_query($linkperformone,$queryperformone);
 	}
 
-	if($_POST['twoactorid']){
+	if($_POST['twoactor']){
 		$linkperformtwo  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformtwo = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -436,7 +318,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformtwo,$queryperformtwo);
 	}
 
-	if($_POST['threeactorid']){
+	if($_POST['threeactor']){
 		$linkperformthree  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformthree = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -444,7 +326,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformthree,$queryperformthree);
 	}
 
-	if($_POST['fouractorid']){
+	if($_POST['fouractor']){
 		$linkperformfour  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformfour = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -452,7 +334,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformfour,$queryperformfour);
 	}
 
-	if($_POST['fiveactorid']){
+	if($_POST['fiveactor']){
 		$linkperformfive  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformfive = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -460,7 +342,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformfive,$queryperformfive);
 	}
 
-	if($_POST['sixactorid']){
+	if($_POST['sixactor']){
 		$linkperformsix  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformsix = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -468,7 +350,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformsix,$queryperformsix);
 	}
 
-	if($_POST['sevenactorid']){
+	if($_POST['sevenactor']){
 		$linkperformseven  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformseven = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -476,7 +358,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformseven,$queryperformseven);
 	}
 
-	if($_POST['eightactorid']){
+	if($_POST['eightactor']){
 		$linkperformeight  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformeight = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -484,7 +366,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformeight,$queryperformeight);
 	}
 
-	if($_POST['nineactorid']){
+	if($_POST['nineactor']){
 		$linkperformnine  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformnine = "INSERT INTO 
 						performs(actorID,movieid,role) 
@@ -492,7 +374,7 @@ $linkperformone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to 
 		mysqli_query($linkperformnine,$queryperformnine);
 	}
 
-	if($_POST['tenactorid']){
+	if($_POST['tenactor']){
 		$linkperformten  = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
 		$queryperformten = "INSERT INTO 
 						performs(actorID,movieid,role) 
