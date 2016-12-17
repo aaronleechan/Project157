@@ -49,6 +49,7 @@
 			JOIN audience a ON r.criticID = a.criticID 
 			JOIN critics c ON c.criticID = a.criticID 
 			WHERE m.name = '2001: A Space Odyssey';#results" >Query 5</a>&nbsp;Find all audience reviews and ratings for a specific movie</li>
+			<li><a href="/Project157/movieDatabase.php/?query=SELECT m.name as 'Movie Title',u.userName as User FROM Movies m,Likes l,Users u WHERE m.movieID = l.movieID AND l.userID = u.userId" >Query 6</a>&nbsp;Collect all Movies title which is related with each user favorite list</li>
 		</ol>
 		<hr>
 		<B>Ad-hoc Query:</B>
