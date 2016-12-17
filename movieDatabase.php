@@ -108,6 +108,11 @@
 					$delim="\n";
 					$htmltable =  "<table>" . $delim ;   
 					$counter = 0 ;
+					// make sure data exists
+					if (is_bool($result)) {
+						$htmltable .=   "</table>"   . $delim ; 
+						return( $htmltable ) ; 
+					} 
 					// putting in lines
 					while( $row = $result->fetch_assoc()){
 						if ( $counter===0 ) {

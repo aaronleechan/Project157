@@ -10,8 +10,9 @@ The purpose of this movie database website is to help movie fans find informatio
 ### Features
 The base of the website is the index4.php template given to us, although we added custom css styling. 
 We also added some extra features:
-1) Users can find detailed information about movies using key fields or a search bar. 
-2) Users can add a new a new movie and its accompanying information to the database.  
+
+1. Users can find detailed information about movies using key fields or a search bar. 
+2. Users can add a new a new movie and its accompanying information to the database.  
 
 Install
 -----------
