@@ -33,16 +33,18 @@
 		<hr>
 		<B>Queries:</B>
 		<ol>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT * from movies WHERE year > 2000;#results" >Query 1</a>&nbsp;Find all Movies that were released after 2000</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT name from movies ORDER BY name;#results" >Query 2</a>&nbsp;Find the Movie title in ascending order</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT name, languageName FROM movies m 
-			JOIN has h ON m.movieId = h.movieID 
-			WHERE h.languageName = 'ENGLISH';#results" >Query 3</a>&nbsp;Find which movies are available with English Language</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT a.name, m.name as 'Movie Title', p.role FROM actors a 
+			<li><a href="/Project157/movieDatabase.php/?query=SELECT * FROM movies 
+			WHERE year > 2000 ORDER BY year;#results" >Query 1</a>&nbsp;Find all Movies that were released after 2000 ordered by date</li>
+			<li><a href="/Project157/movieDatabase.php/?query=SELECT DISTINCT location AS countries 
+			FROM movies;#results" >Query 2</a>&nbsp;Find all countries which produced the movies</li>
+			<li><a href="/Project157/movieDatabase.php/?query=SELECT languageName, COUNT(languageName) AS numberOfMovies 
+			FROM has h JOIN movies m ON h.movieID = m.movieID 
+			GROUP BY languageName;#results" >Query 3</a>&nbsp;Find how many movies are available for each language</li>
+			<li><a href="/Project157/movieDatabase.php/?query=SELECT a.name, m.name AS 'Movie Title', p.role FROM actors a 
 			JOIN performs p ON p.actorID = a.actorID 
 			JOIN movies m ON m.movieID = p.movieID 
 			WHERE m.genre = 'Horror';#results" >Query 4</a>&nbsp;Find all actors who performed in horror movies and what their role was</li>
-			<li><a href="/Project157/movieDatabase.php/?query=SELECT c.name, m.name as 'Movie Title', review, rating FROM reviews r 
+			<li><a href="/Project157/movieDatabase.php/?query=SELECT c.name, m.name AS 'Movie Title', review, rating FROM reviews r 
 			JOIN movies m ON m.movieID = r.movieID 
 			JOIN audience a ON r.criticID = a.criticID 
 			JOIN critics c ON c.criticID = a.criticID 

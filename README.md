@@ -2,14 +2,20 @@
 
 ### Introduction
 Our project application domain is a Movie website. 
-There will be a number of movies inside the database with related information. 
-Users can find detailed information about movies using key fields or search for movies by putting a name in the search bar. 
-When a query is sent to the database, a list of movies which have the key fields or names is displayed. 
-The purpose of this movie database application is to help movie fans find information about movies that they can enjoy. Movie fans can get information such as rating, genre, actors, actress, directors, studio, etc. before they decide to watch a movie.
+There are a number of movies inside the database with related information, taken from imdb.com and cooked up ourselves. 
+The website was created with HTML, CSS, PHP, MariaDB and a little JavaScript.
+We are using XAMPP as our web server. 
+The purpose of this movie database website is to help movie fans find information about movies. The website gives information such as rating, genre, actors, actress, directors, studio, etc.
+
+### Features
+The base of the website is the index4.php template given to us, although we added custom css styling. 
+We also added some extra features:
+1) Users can find detailed information about movies using key fields or a search bar. 
+2) Users can add a new a new movie and its accompanying information to the database.  
 
 Install
 -----------
-Navigate to xampp\htdocs and enter:
+Make sure you have XAMPP installed and the database set up. Navigate to xampp\htdocs and enter:
 
 ```shell
 $ git clone https://github.com/aaronleechan/Project157
