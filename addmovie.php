@@ -81,6 +81,12 @@ if (isset($_POST['submit'])) {
 	$twodirector 					=	mysqli_escape_string($linkdb, $_POST['twodirector']);
 	$twodirectorgender				=	mysqli_escape_string($linkdb, $_POST['twodirectorgender']);
 
+	$firstlanguage = mysqli_escape_string($linkdb, $_POST['firstlanguage']);
+	$secondlanguage = mysqli_escape_string($linkdb, $_POST['secondlanguage']);
+
+	$studioname = mysqli_escape_string($linkdb, $_POST['studioname']);
+	$studioaddress = mysqli_escape_string($linkdb, $_POST['studioaddress']);
+
 	if(!$_POST['movieName']){
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
 		window.alert('You need to add the movie name')
@@ -137,7 +143,7 @@ $linkmovie = mysqli_connect('localhost',$user,$pass,$db) or die("unable to conne
 
 ?>
 
-<!-- summit into actor database -->
+<!-- submit into actor database -->
 <?php
 
 $user = 'root';
@@ -231,7 +237,7 @@ $linkactorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to co
 	}
 ?>
 
-<!-- summit into director database database -->
+<!-- submit into director database -->
 <?php
 
 $user = 'root';
@@ -261,7 +267,106 @@ $linkdirectorone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to
 
 ?>
 
-<!-- summit into direct database -->
+<!-- submit into language database -->
+<?php
+
+$user = 'root';
+$pass = '';
+$db   = 'CS157A_Database';
+$linkfirstlanguage = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+
+	if(mysqli_connect_error()){
+
+		die("Could not connect to database");
+	}
+
+	if($_POST['firstlanguage']){
+		$queryfirstlanguage = "INSERT INTO 
+						Languages(languageName) 
+						VALUES ('$firstlanguage')";
+		mysqli_query($linkfirstlanguage,$queryfirstlanguage);
+	}
+
+	if($_POST['secondlanguage']){
+		$linksecondlanguage 	= mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+		$querysecondlanguage 	= "INSERT INTO 
+							Languages(languageName) 
+							VALUES ('$secondlanguage')";
+		mysqli_query($linksecondlanguage,$querysecondlanguage);
+	}
+
+?>
+
+<!-- submit into studio database -->
+<?php
+
+$user = 'root';
+$pass = '';
+$db   = 'CS157A_Database';
+$linkstudio = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+
+	if(mysqli_connect_error()){
+
+		die("Could not connect to database");
+	}
+
+	if($_POST['studioname']){
+		$querystudio = "INSERT INTO 
+						Studios(studioName,address) 
+						VALUES ('$studioname', '$studioaddress')";
+		mysqli_query($linkstudio,$querystudio);
+	}
+?>
+
+<!-- submit into owns database -->
+<?php
+$user = 'root';
+$pass = '';
+$db   = 'CS157A_Database';
+$linkstudio = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+
+	if(mysqli_connect_error()){
+
+		die("Could not connect to database");
+	}
+
+	if($_POST['studioname']){
+		$querystudio = "INSERT INTO 
+						Owns(studioName,movieID) 
+						VALUES ('$studioname', '$movieid')";
+		mysqli_query($linkstudio,$querystudio);
+	}
+?>
+
+<!-- submit into has database -->
+<?php
+$user = 'root';
+$pass = '';
+$db   = 'CS157A_Database';
+$linkfirstlanguage = mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+
+	if(mysqli_connect_error()){
+
+		die("Could not connect to database");
+	}
+
+	if($_POST['firstlanguage']){
+		$queryfirstlanguage = "INSERT INTO 
+						Has(languageName,movieID) 
+						VALUES ('$firstlanguage', '$movieid')";
+		mysqli_query($linkfirstlanguage,$queryfirstlanguage);
+	}
+
+	if($_POST['secondlanguage']){
+		$linksecondlanguage 	= mysqli_connect('localhost',$user,$pass,$db) or die("unable to connect");
+		$querysecondlanguage 	= "INSERT INTO 
+							Has(languageName,movieID) 
+							VALUES ('$secondlanguage', '$movieid')";
+		mysqli_query($linksecondlanguage,$querysecondlanguage);
+	}
+?>
+
+<!-- submit into direct database -->
 <?php
 $user = 'root';
 $pass = '';
@@ -289,7 +394,7 @@ $linkdirectone = mysqli_connect('localhost',$user,$pass,$db) or die("unable to c
 	}
 ?>
 
-<!--summit into perform database-->
+<!--submit into perform database-->
 <?php
 
 $user = 'root';

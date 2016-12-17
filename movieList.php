@@ -9,9 +9,9 @@
 	<button> <a href = "http://localhost/Project157/movieDatabase.php"> Go Back </a></button>
 	<br/><br/>
 	<?php
-	$base = "SELECT m.name as 'Movie Title', m.description, m.genre, m.year, m.location, h.languageName, o.studioName FROM movies m 
-			JOIN has h ON m.movieID = h.movieID
-			JOIN owns o ON m.movieID = o.movieID";
+	$base = "SELECT m.name AS 'Movie Title', m.description, m.genre, m.year, m.location, o.studioName, AVG(rating) AS rating FROM movies m 
+	LEFT JOIN owns o ON m.movieID = o.movieID
+	LEFT JOIN reviews r ON m.movieID = r.movieID";
 
 	$title = "";
 	$qtitle = "";
@@ -33,11 +33,11 @@
 		if ($orderby == "None") {
 			$qorderby = "";
 		} else {
-			$qorderby = " ORDER BY m." . strtolower($orderby);
+			$qorderby = " ORDER BY " . strtolower($orderby);
 		}
 	}
 
-	$query = $base . $qtitle . $qgenre . $qorderby . ";";
+	$query = $base . $qtitle . $qgenre . " GROUP BY m.movieID " . $qorderby . ";";
 	?>
 
 	<B>Name:</B>
@@ -61,6 +61,7 @@
 	<option value="None" <?php if($orderby == "None") echo "selected"; ?>></option>
 	<option value="Name" <?php if($orderby == "Name") echo "selected"; ?>>Name</option>
 	<option value="Year" <?php if($orderby == "Year") echo "selected"; ?>>Year</option>
+	<option value="Rating DESC" <?php if($orderby == "Rating DESC") echo "selected"; ?>>Rating</option>
 	</select>
 	<br/><br/>
 	<input type="submit" name="submit" value="Submit" />
